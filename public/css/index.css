@@ -1,0 +1,27 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    box-sizing : border-box;
+    margin : 0px;
+    padding : 0px;
+}
+.blogcard-container {
+    width : 80%;
+    border : 1px solid green;
+    display : flex;
+    position : relative;
+    left : 50%;
+    transform : translateX(-50%);
+    top : 0%;
+    align-items : center;
+    justify-content : center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.blogcard {
+    width : 200px;
+    height : 100px;
+    box-shadow : 0px 0px 8px black;
+    padding : 10px;
+    text-align : center;
+    margin : 10px;
+}

@@ -1,23 +1,35 @@
-const express = require("express");
+let express = require("express");
 let app = express();
 let router = express.Router();
+let javaScriptModel = require("./mongoose/javascriptblogs");
+let mongoose = require("mongoose");
+let JavaScriptBlogs = javaScriptModel.JavaScript;
+require("dotenv").config();
 
+app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
-// specifying that any routes created here will be behind "/articles"
-app.use("/articles", router);
+
+
+mongoose.connect(process.env.CONNECTION_STRING,
+    { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connection.on("open", () => {
+    console.log("mongoose connected!")
+})
+
 
 app.get("/", (req, res) => {
-    const articles = [{
-        title: "my first blog",
-        description: "i love coding",
-        content: "jim flew over the baron"
-    }]
-    res.render("index", { articles: articles });
-})
-router.get("/", (req, res) => {
-    res.send("in articles");
+    JavaScriptBlogs.find()
+        .then((result) => {
+            res.render("index", { blogs: result })
+        }).catch((err) => {
+            console.log("error")
+        })
 })
 
-app.listen(3000, () => {
-    console.log("listening on port 3000");
+app.listen(3000, (err) => {
+    if (err) {
+        console.log("please try again")
+    }
+    console.log("running on port " + 3000);
 })

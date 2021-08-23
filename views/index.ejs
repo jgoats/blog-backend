@@ -5,25 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <link rel="stylesheet" rel="stylesheet" type="text/css" href="/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <title>Document</title>
 </head>
 
 <body>
-    <h1>
-        <% articles.forEach((article)=> { %>
-            <div class="card">
-                <div>
-                    <%= article.title %>
-                </div>
-                <div>
-                    <%= article.description %>
-                </div>
-                <div>
-                    <%= article.content %>
+    <h1>JavaScript Blogs</h1>
+    <div class="blogcard-container">
+        <% blogs.forEach(item=> { %>
+            <div class="blogcard">
+                <div class="title">
+                    <%=item.title%>
                 </div>
             </div>
             <% }) %>
-    </h1>
+    </div>
 </body>
 
 </html>
