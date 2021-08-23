@@ -18,7 +18,13 @@
         <% blogs.forEach(item=> { %>
             <div class="blogcard">
                 <div class="title">
-                    <%=item.title%>
+                    <%= "Posted: " + item.time.toLocaleDateString()%>
+                </div>
+                <div class="title">
+                    <%="Title: " + item.title%>
+                </div>
+                <div class=" title">
+                        <%="Description: " + item.description%>
                 </div>
             </div>
             <% }) %>
