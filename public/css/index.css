@@ -3,10 +3,238 @@ html {
     box-sizing : border-box;
     margin : 0px;
     padding : 0px;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(77,135,123,0.6474964985994398) 51%, rgba(0,0,0,1) 100%); 
+}
+body {
+    margin : 0px;
+    padding : 0px;
+    box-sizing : border-box;
+}
+.index-background {
+    position : relative;
+    width : auto;
+    height : 100%;
+}
+.content-container {
+    display : block;
+    position : absolute;
+    height : 100px;
+    width : 200px;
+    z-index : 2;
+    transform : translateX(-40%);
+    top : -200%;
+}
+.content-container-active {
+    display : block;
+    position : absolute;
+    height : 100px;
+    width : 200px;
+    z-index : 2;
+    top : 100%;
+    transform : translateX(-40%);
+    animation : down 0.2s ease-out;
+}
+@keyframes down {
+    from {
+        top : -200%;
+    }
+    to {
+        top : 100%;
+    }
+}
+.content-navigation {
+    position : relative;
+    display : flex;
+    background-color : rgba(0, 0, 0 , 0.7);
+    align-items : center;
+    justify-content: center;
+    flex-direction: column;
+    padding : 0px;
+    margin : 0px;
+    height : 100%;
+}
+.content-item {
+    list-style: none;
+    padding : 3px;
+    display : flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index : 3;
+}
+.content-item:hover {
+    background-color : black;
+    width : 100%;
+    margin : 0px;
+    padding : 3px 0px 3px 0px;
+}
+.content-link {
+    text-decoration : none;
+    color : rgb(210, 218, 224);
+    text-align: center;
+}
+.content-link:hover {
+    color :rgb(144, 186, 216);
+}
+.navigation-container {
+    background-color : black;
+    height : 50px;
+    display : flex;
+    align-items : center;
+    justify-content : space-evenly;
+    margin : 0px;
+    position : fixed;
+    top : 0%;
+    width : 100vw;
+    padding : 0px;
+    z-index : 3;
+}
+.nav-item {
+list-style: none;
+display : flex;
+justify-content: center;
+flex-direction: column;
+z-index : 3;
+height : 100%;
+padding : 0px 10px 0px 10px;
+}
+.nav-item:hover {
+    background-color : rgb(70, 67, 67);
+}
+.link {
+    text-decoration : none;
+    color : white;
+    user-select : none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    padding : 15px 0px 15px 0px;
+}
+.link:hover {
+    color : rgb(144, 186, 216);
+    cursor: pointer;
+}
+.slideshow-container {
+    width : 50vw;
+    position : relative;
+    left : 50%;
+    transform : translateX(-50%);
+    display : flex;
+    height : 300px;
+    align-items : center;
+    flex-direction: row;
+}
+.slide {
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    position : absolute;
+    width : 50vw;
+    height : 300px;
+    transform : translateX(-50%);
+    box-shadow : 0px 0px 3px black;
+}
+section {
+    margin : 10%;
+    border : 1px solid black;
+    background-color : white;
+    height : auto;
+}
+#sectionOne {
+    margin-top : calc(80px);
+    padding-top : 30px;
+}
+.slide-description {
+    color : black;
+    font-size : 20px;
+    padding : 5px;
+    text-align : center;
+}
+.slide-image {
+    width : 50vw;
+    height : 300px;
+}
+.slideshow-controls {
+    width : 150px;
+    display : flex;
+    align-items : center;
+    justify-content:space-evenly;
+    flex-direction : row;
+    left : 50%;
+    transform : translateX(-50%);
+    position : relative;
+    height : 40px;
+}
+.position1 {
+    animation : one 1s ease-out;
+}
+.position2 {
+    animation : two 1s ease-out;
+}
+.position3 {
+    animation : three 1s ease-out;
+}
+.active {
+    opacity : 0.2;
+    animation : active 0.5s ease-out;
+    width : 50vw;
+    height : 300px;
+}
+@keyframes active {
+    from {
+        width : 50vw;
+        height : 300px;
+        opacity : 0.2
+    }
+    to {
+        width : 50vw;
+        height : 300px;
+        opacity : 1;
+    }
+}
+@keyframes one {
+    from {
+        left : 80%;
+    }
+    to {
+        left : 20%;
+    }
+}
+@keyframes two {
+    from {
+        left : 20%;
+    }
+    to {
+        left : 50%;
+    }
+}
+@keyframes three {
+    from {
+        left : 50%;
+    }
+    to {
+        left : 80%;
+    }
+}
+.circle {
+    width : 15px;
+    height : 15px;
+    background-color : white;
+    border : 2px solid black;
+    box-shadow : 0px 0px 4px black;
+    border-radius : 50%;
+}
+.introduction {
+    width : 80vw;
+    margin-left : auto;
+    margin-right : auto;
+    display : block;
+    padding : 10px;
+    line-height: 2rem;
+    font-size : 19px;
+    text-align : center;
 }
 .blogcard-container {
-    width : 80%;
-    border : 1px solid green;
+    width : 100%;
     display : flex;
     position : relative;
     left : 50%;
@@ -14,14 +242,39 @@ html {
     top : 0%;
     align-items : center;
     justify-content : center;
-    flex-wrap: wrap;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin : 0px;
+    padding : 10px;
+    height : auto;
 }
 .blogcard {
-    width : 200px;
-    height : 100px;
-    box-shadow : 0px 0px 8px black;
-    padding : 10px;
+    width : 300px;
+    border-radius : 10px;
+    padding : 0px;
+    margin : 0px;
+    height : 400px;
+    position : relative;
+}
+.blogcard:hover {
+    cursor: pointer;
+    background-color: rgb(220,220,220);
+}
+.blogcard-image {
+    width : 300px;
+    height : 200px;
+    border-radius : 10px 10px 0px 0px;
+}
+.blogcard-item {
+    font-weight : bold;
+    font-size : 25px;
+}
+.blog-title {
+    color : black;
+}
+.section-heading {
     text-align : center;
-    margin : 10px;
+    font-weight : bold;
+    color : black;
+    margin : 40px;
 }

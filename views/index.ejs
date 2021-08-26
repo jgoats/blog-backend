@@ -13,22 +13,78 @@
 </head>
 
 <body>
-    <h1>JavaScript Blogs</h1>
-    <div class="blogcard-container">
-        <% blogs.forEach(item=> { %>
-            <div class="blogcard">
-                <div class="title">
-                    <%= "Posted: " + item.time.toLocaleDateString()%>
+    <%- include("partials/nav.ejs")%>
+        <div class="index-background">
+            <section id="sectionOne">
+                <div class="slideshow-container">
+                    <div class="slide">
+                        <p class="slide-description">Gain confidence using JavaScript for your future projects</p><img
+                            class="slide-image" src="/images/screenshot.png" />
+                    </div>
+                    <div class="slide">
+                        <p class="slide-description">Learn the ins and outs of JavaScript at a deep level</p><img
+                            class="slide-image" src="/images/screenshot.png" />
+                    </div>
+                    <div class="slide">
+                        <p class="slide-description">Understand How JavaScript works under the hood</p><img
+                            class="slide-image" src="/images/screenshot.png" />
+                    </div>
                 </div>
-                <div class="title">
-                    <%="Title: " + item.title%>
+                <div class="slideshow-controls">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
                 </div>
-                <div class=" title">
-                        <%="Description: " + item.description%>
+                <h1 class="section-heading">Introduction</h1>
+                <div class="introduction">
+                    Learning JavaScript is hard. Sure, the basics are very easy to understand if you are persistent
+                    or if you have learned other programming languages. But once you get past the basics the language
+                    quickly becomes
+                    very confusing to alot of people. JavaScript does a lot of things in the background that can trip up
+                    even senior developers.
+                    During equality checks, JavaScript will attempt to change the data type of one operand to match the
+                    second if they are different,
+                    Classes in JavaScript aren't really classes at all, they are actually constructor functions behind
+                    the
+                    scenes.
+                    Almost everything in JavaScript is classified as an object, this includes functions , arrays , and
+                    heck
+                    the type of "null" is even equal to
+                    "Object" under the hood. Confused yet? I was for a long time while learning JavaScript. There are a
+                    lot
+                    of resources out there to learn JavaScript
+                    but I quickly found that most of that information was not explaining how JavaScript really behaves
+                    under
+                    the hood. It's hard to truely master somthing
+                    when you dont even know how it works behind the scenes. Well i'm here to attempt to break down
+                    JavaScript
+                    at a deep level so that we all walk away as better
+                    developers.
                 </div>
-            </div>
-            <% }) %>
-    </div>
+                <h1 class="section-heading">Recent Articles</h1>
+                <div class="blogcard-container">
+                    <% blogs.forEach(item=> { %>
+                        <div class="blogcard">
+                            <div class="blogcard-item">
+                                <img src="/images/<%=item.image%>" class="blogcard-image">
+                            </div>
+                            <div class="blogcard-item">
+                                <%=item.time.toLocaleDateString()%>
+                            </div>
+                            <div class="blogcard-item">
+                                <a class="blog-title">
+                                    <%=item.title%>
+                                </a>
+                            </div>
+                            <div class="blogcard-item">
+                                <%=item.description%>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+        </div>
+        <script src="/slideshow/slideshow.js">
+        </script>
 </body>
 
 </html>

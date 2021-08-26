@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 
 
-mongoose.connect(process.env.CONNECTION_STRING,
+/*mongoose.connect(process.env.CONNECTION_STRING,
     { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on("open", () => {
@@ -26,7 +26,31 @@ app.get("/", (req, res) => {
             console.log("error")
         })
 })
-
+*/
+app.get("/", (req, res) => {
+    let articles = [{
+        title: "blog one",
+        description: "this is the description for blog one",
+        content: "blogs ones content",
+        time: new Date,
+        image: "funny.jpg"
+    },
+    {
+        title: "blog two",
+        description: "this is the description for blog two",
+        content: "blogs twos content",
+        time: new Date,
+        image: "paid.jpg"
+    },
+    {
+        title: "blog three",
+        description: "this is the description for blog three",
+        content: "blogs threes content",
+        time: new Date,
+        image: "screenshot.png"
+    }]
+    res.render("index", { blogs: articles })
+})
 app.listen(3000, (err) => {
     if (err) {
         console.log("please try again")
