@@ -3,13 +3,14 @@ html {
     box-sizing : border-box;
     margin : 0px;
     padding : 0px;
-    background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(77,135,123,0.6474964985994398) 51%, rgba(0,0,0,1) 100%); 
+    background: rgb(19,19,19);
+    background: linear-gradient(36deg, rgba(19,19,19,1) 0%, rgba(161,240,187,1) 52%, rgba(19,19,19,1) 100%);
 }
 body {
     margin : 0px;
     padding : 0px;
     box-sizing : border-box;
+    overflow-x : hidden;
 }
 .index-background {
     position : relative;
@@ -114,7 +115,8 @@ padding : 0px 10px 0px 10px;
     cursor: pointer;
 }
 .slideshow-container {
-    width : 50vw;
+    padding-top : 100px;
+    width : 70vw;
     position : relative;
     left : 50%;
     transform : translateX(-50%);
@@ -127,17 +129,14 @@ padding : 0px 10px 0px 10px;
     display : flex;
     align-items : center;
     justify-content: center;
+    flex-direction: row;
     position : absolute;
-    width : 50vw;
+    width : 70vw;
     height : 300px;
     transform : translateX(-50%);
     box-shadow : 0px 0px 3px black;
-}
-section {
-    margin : 10%;
-    border : 1px solid black;
     background-color : white;
-    height : auto;
+    left : 50%;
 }
 #sectionOne {
     margin-top : calc(80px);
@@ -148,9 +147,11 @@ section {
     font-size : 20px;
     padding : 5px;
     text-align : center;
+    width : 35vw;
 }
 .slide-image {
-    width : 50vw;
+    min-width : 250px;
+    width : 35vw;
     height : 300px;
 }
 .slideshow-controls {
@@ -163,15 +164,6 @@ section {
     transform : translateX(-50%);
     position : relative;
     height : 40px;
-}
-.position1 {
-    animation : one 1s ease-out;
-}
-.position2 {
-    animation : two 1s ease-out;
-}
-.position3 {
-    animation : three 1s ease-out;
 }
 .active {
     opacity : 0.2;
@@ -219,7 +211,6 @@ section {
     width : 15px;
     height : 15px;
     background-color : white;
-    border : 2px solid black;
     box-shadow : 0px 0px 4px black;
     border-radius : 50%;
 }
@@ -232,6 +223,10 @@ section {
     line-height: 2rem;
     font-size : 19px;
     text-align : center;
+    background-color : white;
+    padding : 20px;
+    box-shadow : 0px 0px 2px black;
+    border-radius : 5px;
 }
 .blogcard-container {
     width : 100%;
@@ -244,7 +239,7 @@ section {
     justify-content : center;
     flex-direction: row;
     flex-wrap: wrap;
-    margin : 0px;
+    margin : 0px 0px 30px 0px;
     padding : 10px;
     height : auto;
 }
@@ -255,6 +250,9 @@ section {
     margin : 0px;
     height : 400px;
     position : relative;
+    margin : 5px 5px 5px 5px;
+    background-color : white;
+    border : 2px solid black;
 }
 .blogcard:hover {
     cursor: pointer;
@@ -267,10 +265,15 @@ section {
 }
 .blogcard-item {
     font-weight : bold;
-    font-size : 25px;
+    text-align : center;
+    margin-bottom : 10px;
 }
 .blog-title {
     color : black;
+    font-size : 20px;
+}
+.date {
+    opacity: 0.7;
 }
 .section-heading {
     text-align : center;

@@ -16,6 +16,10 @@ let blogs = mongoose.Schema({
     time: {
         type: Date,
         default: new Date()
+    },
+    image: {
+        type: String,
+        default: "screenshot.png"
     }
 })
 
