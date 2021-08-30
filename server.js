@@ -26,6 +26,15 @@ app.get("/", (req, res) => {
             console.log("error")
         })
 })
+app.get("/admin", (req, res) => {
+    res.render("adminlogin");
+})
+app.post("/dashboard", (req, res) => {
+
+})
+app.post("/register", (req, res) => {
+
+})
 
 app.listen(3000, (err) => {
     if (err) {
