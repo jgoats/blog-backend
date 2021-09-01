@@ -14,12 +14,12 @@
 
 <body>
     <%- include("partials/nav.ejs")%>
-        <form method="POST" action="/login" class="login-container">
+        <form class="login-container">
             <label class="login-label">Username</label><input class="login-input" type="text" name="username"
                 id="username" />
             <label class="login-label">Password</label><input class="login-input" type="password" name="password"
                 id="password" />
-            <input type="submit" value='login' />
+            <input id="submit" type="submit" value='login' />
         </form>
         <!-- <form method="POST" action="/register" class="login-container">
             <label class="login-label"> register Username</label><input class="login-input" type="text" name="username"
@@ -28,6 +28,7 @@
                 name="password" id="password" />
             <input type="submit" value='register' />
         </form> ---->
+        <script src="/axios/authentication.js"></script>
 </body>
 
 </html>
