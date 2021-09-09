@@ -14,7 +14,7 @@ let blogs = mongoose.Schema({
         required: true
     },
     time: {
-        type: Date,
+        type: String,
         default: new Date()
     },
     image: {

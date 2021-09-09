@@ -19,23 +19,79 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
 }))
-app.use(express.static(__dirname + '/public'));
-app.set("view engine", "ejs");
-
 mongoose.connect(process.env.CONNECTION_STRING,
     { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on("open", () => {
     console.log("mongoose connected!")
+});
+
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
 })
 
+const upload = multer({ storage: storage }).single('file')
+app.get("/getblogs", (req, res) => {
+    JavaScriptBlogs.find()
+        .then((blogs) => {
+            res.send({ blogs: blogs });
+        }).catch((err) => {
+            if (err) {
+                console.log(err)
+            }
+        })
+})
+app.post("/addblog", authenticateToken, (req, res) => {
+    JavaScriptBlogs.findOne({ title: req.body.title })
+        .then((result) => {
+            if (result) {
+                res.send({ title: true });
+            }
+            else {
+                JavaScriptBlogs.create({
+                    title: req.body.title,
+                    description: req.body.description,
+                    content: req.body.content,
+                }).then((sent) => {
+                    if (sent) {
+                        res.send({ sent: true })
+                    }
+                    else {
+                        res.send({ sent: false })
+                    }
+                }).catch((err) => {
+                    if (err) {
+                        res.send(err);
+                    }
+                })
+            }
+        }).catch((err) => {
+            if (err) {
+                res.send(err);
+            }
+        })
+})
 app.get("/deletecookie", (req, res) => {
     res.status(202).clearCookie("jwt").send("cookie was cleared");
 })
 app.get("/dashboard", authenticateToken, (req, res) => {
-    res.send("user is authenticated!!!");
+    res.send({ signedIn: true });
+});
+app.post("/upload", authenticateToken, (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            res.send(err);
+        }
+        res.send(req.file);
+    });
 })
-
 app.post("/login", (req, res) => {
     adminRegister.findOne({ username: req.body.username })
         .then((admin) => {
@@ -48,7 +104,7 @@ app.post("/login", (req, res) => {
                         }
                         let token = jwt.sign(payload, secret);
                         await res.status(200).cookie('jwt', token,
-                            { httpOnly: true, sameSite: true, maxAge: 1000 * 60 * 60 }).send('well done')
+                            { httpOnly: true, sameSite: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
                     }
                     generateAccessToken(req.body.username);
 
@@ -63,6 +119,7 @@ app.post("/login", (req, res) => {
             }
         })
 })
+app.use(express.static('public'));
 
 app.listen(4000, (err) => {
     if (err) {
@@ -81,7 +138,7 @@ function authenticateToken(req, res, next) {
         var name = cookie.slice(0, index);
     }
     catch (err) {
-        res.send("token doesnt exist");
+        res.send({ signedIn: false });
     }
     if (name === "jwt" && token !== undefined) {
         try {
