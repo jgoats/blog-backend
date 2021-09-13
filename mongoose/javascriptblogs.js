@@ -17,9 +17,10 @@ let blogs = mongoose.Schema({
         type: String,
         default: new Date()
     },
-    image: {
+    screenshot: {
         type: String,
-        default: "screenshot.png"
+        default: `<img class='blog-image'
+        src='http://localhost:4000/images/screenshot.png'/>`
     }
 })
 
