@@ -8,7 +8,6 @@ let cors = require("cors");
 let mongoose = require("mongoose");
 let JavaScriptBlogs = javaScriptModel.JavaScript;
 let adminRegister = adminModel.adminRegister;
-require("dotenv").config();
 let secret = process.env.SECRET;
 var cookieParser = require('cookie-parser');
 app.use(express.json());
