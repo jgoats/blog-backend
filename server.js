@@ -9,6 +9,7 @@ let mongoose = require("mongoose");
 let JavaScriptBlogs = javaScriptModel.JavaScript;
 let adminRegister = adminModel.adminRegister;
 let secret = process.env.SECRET;
+let port = process.env.PORT;
 var cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(cookieParser());
@@ -34,7 +35,10 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage }).single('file')
+const upload = multer({ storage: storage }).single('file');
+app.get("/", (req, res) => {
+    res.send("welcome to blog-backend");
+})
 app.get("/getblogs", (req, res) => {
     JavaScriptBlogs.find()
         .then((blogs) => {
@@ -118,11 +122,11 @@ app.post("/login", (req, res) => {
 })
 app.use(express.static('public'));
 
-app.listen(4000, (err) => {
+app.listen(port, (err) => {
     if (err) {
         console.log("please try again")
     }
-    console.log("running on port " + 4000);
+    console.log("running on port " + port);
 })
 function comparePassword(password, hash) {
     return bcrypt.compareSync(password, hash);
