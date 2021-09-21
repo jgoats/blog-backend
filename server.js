@@ -11,8 +11,6 @@ let adminRegister = adminModel.adminRegister;
 require("dotenv").config();
 let secret = process.env.SECRET;
 var cookieParser = require('cookie-parser');
-let session = require("express-session");
-//app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -26,7 +24,7 @@ mongoose.connection.on("open", () => {
     console.log("mongoose connected!")
 });
 
-const multer = require('multer')
+const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
