@@ -19,8 +19,7 @@ let blogs = mongoose.Schema({
     },
     screenshot: {
         type: String,
-        default: `<img class='blog-image'
-        src='http://localhost:4000/images/screenshot.png'/>`
+        default: 'http://localhost:4000/images/screenshot.png'
     }
 })
 
