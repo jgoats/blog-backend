@@ -19,7 +19,7 @@ let blogs = mongoose.Schema({
     },
     screenshot: {
         type: String,
-        default: 'http://localhost:4000/images/screenshot.png'
+        default: 'https://blog-backend426.herokuapp.com/images/screenshot.png'
     }
 })
 
