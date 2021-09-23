@@ -80,9 +80,6 @@ app.post("/addblog", authenticateToken, (req, res) => {
             }
         })
 })
-app.get("/deletecookie", (req, res) => {
-    res.status(202).clearCookie("jwt").send("cookie was cleared");
-})
 app.get("/dashboard", authenticateToken, (req, res) => {
     res.send({ signedIn: true });
 });
@@ -106,7 +103,7 @@ app.post("/login", (req, res) => {
                         }
                         let token = jwt.sign(payload, secret);
                         await res.status(200).cookie('jwt', token,
-                            { sameSite: "None", Secure, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
+                            { SameSite: "Lax", httpOnly: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
                     }
                     generateAccessToken(req.body.username);
 
