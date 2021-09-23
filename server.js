@@ -97,26 +97,26 @@ app.post("/upload", authenticateToken, (req, res) => {
 app.post("/login", (req, res) => {
     adminRegister.findOne({ username: req.body.username })
         .then((admin) => {
-            console.log(admin);
-            if (!admin) res.json({ admin: false });
-            if (admin) {
-                if (comparePassword(req.body.password, admin.password)) {
-                    async function generateAccessToken(username) {
-                        let payload = {
-                            username: username
-                        }
-                        let token = jwt.sign(payload, secret);
-                        res.json({ token: token });
-                        /* await res.status(200).cookie('jwt', token,
-                             { httpOnly: false, sameSite: false, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })*/
-                    }
-                    generateAccessToken(req.body.username);
-
-                }
-            }
-            else {
-                res.json({ password: false });
-            }
+            res.send(admin);
+            /*if (!admin) res.json({ admin: false });
+             if (admin) {
+                 if (comparePassword(req.body.password, admin.password)) {
+                     async function generateAccessToken(username) {
+                         let payload = {
+                             username: username
+                         }
+                         let token = jwt.sign(payload, secret);
+                         res.json({ token: token });
+                         await res.status(200).cookie('jwt', token,
+                              { httpOnly: false, sameSite: false, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
+                     }
+                     generateAccessToken(req.body.username);
+ 
+                 }
+             }
+             else {
+                 res.json({ password: false });
+             }*/
         }).catch((err) => {
             if (err) {
                 console.log(res.send(err));
