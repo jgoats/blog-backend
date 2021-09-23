@@ -100,19 +100,19 @@ app.post("/login", (req, res) => {
             if (!admin) res.json({ admin: false });
             if (admin) {
                 if (comparePassword(req.body.password, admin.password)) {
-                    res.send("correct login credentials");
-                   /* async function generateAccessToken(username) {
+                    async function generateAccessToken(username) {
                         let payload = {
                             username: username
                         }
                         let token = jwt.sign(payload, secret);
                         res.json({ token: token });
+                        /*
                         await res.status(200).cookie('jwt', token,
                             { httpOnly: true, sameSite: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
-                    }
+                    */ }
                     generateAccessToken(req.body.username);
 
-                */}
+                }
             }
             else {
                 res.json({ password: false });
