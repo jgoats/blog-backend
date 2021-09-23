@@ -100,7 +100,8 @@ app.post("/login", (req, res) => {
             if (!admin) res.json({ admin: false });
             if (admin) {
                 if (comparePassword(req.body.password, admin.password)) {
-                    async function generateAccessToken(username) {
+                    res.send("correct login credentials");
+                   /* async function generateAccessToken(username) {
                         let payload = {
                             username: username
                         }
@@ -111,7 +112,7 @@ app.post("/login", (req, res) => {
                     }
                     generateAccessToken(req.body.username);
 
-                }
+                */}
             }
             else {
                 res.json({ password: false });
