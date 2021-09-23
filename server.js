@@ -25,6 +25,7 @@ mongoose.connection.on("open", () => {
 });
 
 const multer = require('multer');
+const { json } = require("express");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -105,8 +106,9 @@ app.post("/login", (req, res) => {
                             username: username
                         }
                         let token = jwt.sign(payload, secret);
-                        await res.status(200).cookie('jwt', token,
-                            { httpOnly: false, sameSite: false, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
+                        res.json({ token: token });
+                        /* await res.status(200).cookie('jwt', token,
+                             { httpOnly: false, sameSite: false, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })*/
                     }
                     generateAccessToken(req.body.username);
 
