@@ -108,7 +108,7 @@ app.post("/login", (req, res) => {
                         }
                         let token = jwt.sign(payload, secret);
                         await res.status(200).cookie('jwt', token,
-                            { SameSite: "none", secure: true, httpOnly: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
+                            { SameSite: "None", secure: true, httpOnly: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
                     }
                     generateAccessToken(req.body.username);
 
