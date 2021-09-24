@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: true,
+    origin: "https://justinssoftware.com",
     credentials: true
 }))
 mongoose.connect(process.env.CONNECTION_STRING,
@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('file');
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Origin", "https://justinssoftware.com");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -108,7 +108,7 @@ app.post("/login", (req, res) => {
                         }
                         let token = jwt.sign(payload, secret);
                         await res.status(200).cookie('jwt', token,
-                            { maxAge: 1000 * 60 * 60, httpOnly: false }).send({ signedIn: true, username: req.body.username })
+                            { maxAge: 1000 * 60 * 60, httpOnly: true, secure: true, sameSite: "None" }).send({ signedIn: true, username: req.body.username })
                     }
                     generateAccessToken(req.body.username);
 
