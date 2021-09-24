@@ -25,7 +25,6 @@ mongoose.connection.on("open", () => {
 });
 
 const multer = require('multer');
-const { json } = require("express");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -37,6 +36,12 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage }).single('file');
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.get("/", (req, res) => {
     res.send("welcome to blog-backend");
 })
@@ -103,7 +108,7 @@ app.post("/login", (req, res) => {
                         }
                         let token = jwt.sign(payload, secret);
                         await res.status(200).cookie('jwt', token,
-                            { SameSite: "Lax", httpOnly: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
+                            { SameSite: "none", secure: true, httpOnly: true, maxAge: 1000 * 60 * 60 }).send({ signedIn: true, username: req.body.username })
                     }
                     generateAccessToken(req.body.username);
 
