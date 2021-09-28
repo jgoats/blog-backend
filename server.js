@@ -14,7 +14,8 @@ var cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ["https://www.justinssoftware.com", "http://www.justinssoftware.com"],
+    origin: ["https://www.justinssoftware.com", "http://www.justinssoftware.com"
+        , "https://justinssoftware.com", "http://justinssoftware.com"],
     credentials: true
 }))
 mongoose.connect(process.env.CONNECTION_STRING,
